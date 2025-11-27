@@ -37,10 +37,10 @@ export function MegaMenu({ item, onClose }: MegaMenuProps) {
                   setActiveGroupId(group.id);
                 }}
                 className={cn(
-                  'w-full text-left px-3 py-2.5 rounded-md text-sm font-semibold transition-all',
+                  'w-full text-left px-3 py-2.5 rounded-md text-sm font-semibold transition-all duration-200',
                   activeGroupId === group.id
-                    ? 'bg-primary/10 text-primary'
-                    : 'text-foreground/80 hover:bg-muted hover:text-primary'
+                    ? 'bg-primary/10 text-primary shadow-sm'
+                    : 'text-foreground/70 hover:bg-primary/5 hover:text-primary hover:shadow-sm'
                 )}
               >
                 {group.label.en}
