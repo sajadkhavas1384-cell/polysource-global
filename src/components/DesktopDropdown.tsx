@@ -1,19 +1,28 @@
 import { Link } from 'react-router-dom';
 import { NavigationItem } from '@/data/navigation';
 import { ChevronDown } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 interface DesktopDropdownProps {
   item: NavigationItem;
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
+  isActive: (href: string) => boolean;
 }
 
-export function DesktopDropdown({ item, isOpen, onOpenChange }: DesktopDropdownProps) {
+export function DesktopDropdown({ item, isOpen, onOpenChange, isActive }: DesktopDropdownProps) {
+  const isAnyChildActive = item.children?.some(child => isActive(child.href || ''));
+
   if (!item.children || item.children.length === 0) {
     return (
       <Link
         to={item.href || '#'}
-        className="text-sm font-medium text-foreground hover:text-primary transition-colors px-4 py-2 rounded-md hover:bg-muted/50"
+        className={cn(
+          'text-sm font-semibold transition-colors px-4 py-2 rounded-md',
+          isActive(item.href || '')
+            ? 'bg-primary/10 text-primary'
+            : 'text-foreground/90 hover:bg-muted hover:text-primary'
+        )}
       >
         {item.label.en}
       </Link>
@@ -27,7 +36,12 @@ export function DesktopDropdown({ item, isOpen, onOpenChange }: DesktopDropdownP
       onMouseLeave={() => onOpenChange(false)}
     >
       <button
-        className="flex items-center text-sm font-medium text-foreground hover:text-primary transition-colors px-4 py-2 rounded-md hover:bg-muted/50"
+        className={cn(
+          'flex items-center text-sm font-semibold transition-colors px-4 py-2 rounded-md',
+          isAnyChildActive
+            ? 'bg-primary/10 text-primary'
+            : 'text-foreground/90 hover:bg-muted hover:text-primary'
+        )}
       >
         {item.label.en}
         <ChevronDown className={`h-3.5 w-3.5 ml-1 transition-transform ${isOpen ? 'rotate-180' : ''}`} />

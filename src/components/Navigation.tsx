@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ShoppingCart, Globe } from 'lucide-react';
+import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { useRFQ } from '@/contexts/RFQContext';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
@@ -11,6 +12,7 @@ import { MobileNav } from './MobileNav';
 import { DesktopDropdown } from './DesktopDropdown';
 
 export function Navigation() {
+  const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [megaMenuOpen, setMegaMenuOpen] = useState<string | null>(null);
   const [dropdownOpen, setDropdownOpen] = useState<string | null>(null);
@@ -20,6 +22,10 @@ export function Navigation() {
   const servicesItem = navigationData.find(item => item.id === 'services');
   const newsItem = navigationData.find(item => item.id === 'insights');
   const aboutItem = navigationData.find(item => item.id === 'about');
+
+  const isActive = (href: string) => {
+    return location.pathname === href || location.pathname.startsWith(href + '/');
+  };
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -52,7 +58,7 @@ export function Navigation() {
           </div>
 
           {/* Bottom layer: Navigation + Actions */}
-          <div className="flex items-center justify-between h-14">
+          <div className="relative flex items-center justify-between h-14">
             {/* Center: Main Navigation */}
             <div className="flex items-center space-x-1">
               {/* Polymer Products with Mega Menu */}
@@ -63,7 +69,12 @@ export function Navigation() {
                 >
                   <Link
                     to={polymerProductsItem.href || '/products'}
-                    className="text-sm font-semibold text-foreground hover:text-primary transition-colors px-4 py-2 rounded-md hover:bg-muted/50"
+                    className={cn(
+                      'text-sm font-semibold transition-colors px-4 py-2 rounded-md',
+                      isActive('/products')
+                        ? 'bg-primary/10 text-primary'
+                        : 'text-foreground/90 hover:bg-muted hover:text-primary'
+                    )}
                   >
                     {polymerProductsItem.label.en}
                   </Link>
@@ -86,6 +97,7 @@ export function Navigation() {
                   item={servicesItem}
                   isOpen={dropdownOpen === 'services'}
                   onOpenChange={(open) => setDropdownOpen(open ? 'services' : null)}
+                  isActive={isActive}
                 />
               )}
               {newsItem && (
@@ -93,6 +105,7 @@ export function Navigation() {
                   item={newsItem}
                   isOpen={dropdownOpen === 'news'}
                   onOpenChange={(open) => setDropdownOpen(open ? 'news' : null)}
+                  isActive={isActive}
                 />
               )}
               {aboutItem && (
@@ -100,9 +113,18 @@ export function Navigation() {
                   item={aboutItem}
                   isOpen={dropdownOpen === 'about'}
                   onOpenChange={(open) => setDropdownOpen(open ? 'about' : null)}
+                  isActive={isActive}
                 />
               )}
-              <Link to="/sustainability" className="text-sm font-medium text-foreground hover:text-primary transition-colors px-4 py-2 rounded-md hover:bg-muted/50">
+              <Link 
+                to="/sustainability" 
+                className={cn(
+                  'text-sm font-semibold transition-colors px-4 py-2 rounded-md',
+                  isActive('/sustainability')
+                    ? 'bg-primary/10 text-primary'
+                    : 'text-foreground/90 hover:bg-muted hover:text-primary'
+                )}
+              >
                 Sustainability
               </Link>
             </div>

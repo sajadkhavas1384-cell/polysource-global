@@ -5,10 +5,10 @@ export function Footer() {
   return (
     <footer className="border-t border-border bg-card">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 divide-y lg:divide-y-0 lg:divide-x divide-border/60">
           {/* Company */}
-          <div>
-            <h3 className="font-semibold text-foreground mb-4">Company</h3>
+          <div className="pt-8 lg:pt-0 lg:pr-8 first:pt-0">
+            <h3 className="font-bold text-foreground mb-4 text-sm uppercase tracking-wide">Company</h3>
             <ul className="space-y-2">
               <li>
                 <Link to="/about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
@@ -29,8 +29,8 @@ export function Footer() {
           </div>
 
           {/* Products */}
-          <div>
-            <h3 className="font-semibold text-foreground mb-4">Products</h3>
+          <div className="pt-8 lg:pt-0 lg:px-8">
+            <h3 className="font-bold text-foreground mb-4 text-sm uppercase tracking-wide">Products</h3>
             <ul className="space-y-2">
               <li>
                 <Link to="/products?category=recycled" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
@@ -51,8 +51,8 @@ export function Footer() {
           </div>
 
           {/* Resources */}
-          <div>
-            <h3 className="font-semibold text-foreground mb-4">Resources</h3>
+          <div className="pt-8 lg:pt-0 lg:px-8">
+            <h3 className="font-bold text-foreground mb-4 text-sm uppercase tracking-wide">Resources</h3>
             <ul className="space-y-2">
               <li>
                 <Link to="/resources" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
@@ -68,8 +68,8 @@ export function Footer() {
           </div>
 
           {/* Contact */}
-          <div>
-            <h3 className="font-semibold text-foreground mb-4">Contact</h3>
+          <div className="pt-8 lg:pt-0 lg:pl-8">
+            <h3 className="font-bold text-foreground mb-4 text-sm uppercase tracking-wide">Contact</h3>
             <ul className="space-y-3">
               <li className="flex items-start text-sm text-muted-foreground">
                 <MapPin className="h-4 w-4 mr-2 mt-0.5 flex-shrink-0" />
