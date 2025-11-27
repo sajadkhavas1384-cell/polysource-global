@@ -61,14 +61,14 @@ export function MegaMenu({ item, onClose }: MegaMenuProps) {
                     {activeGroup.children.map((category) => (
                       <div key={category.id} className="pb-3 border-b border-border/60">
                         {/* Category (Second Level) - Bold Primary */}
-                        <Link
-                          to={category.href || '#'}
-                          onClick={onClose}
-                          className="group inline-flex items-center justify-between text-sm font-bold text-primary hover:text-primary/80 transition-colors w-full"
-                        >
-                          <span>{category.label.en}</span>
-                          <ChevronRight className="h-3.5 w-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                        </Link>
+                <Link
+                  to={category.href || '#'}
+                  onClick={onClose}
+                  className="group inline-flex items-center justify-between text-sm font-bold text-primary hover:text-primary hover:bg-primary/5 transition-all w-full px-2 py-1.5 rounded-md -mx-2"
+                >
+                  <span>{category.label.en}</span>
+                  <ChevronRight className="h-3.5 w-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </Link>
 
                         {/* Subcategories (Third Level) - Smaller Muted */}
                         {category.children && category.children.length > 0 && (
@@ -78,9 +78,9 @@ export function MegaMenu({ item, onClose }: MegaMenuProps) {
                                 <Link
                                   to={subItem.href || '#'}
                                   onClick={onClose}
-                                  className="group inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-all hover:translate-x-0.5 py-0.5"
+                                  className="group inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-all hover:translate-x-0.5 py-1 px-2 rounded-md -mx-2"
                                 >
-                                  <ChevronRight className="h-3 w-3 text-border group-hover:text-foreground transition-colors" />
+                                  <ChevronRight className="h-3 w-3 text-border group-hover:text-primary transition-colors" />
                                   <span>{subItem.label.en}</span>
                                 </Link>
                               </li>
@@ -108,7 +108,7 @@ export function MegaMenu({ item, onClose }: MegaMenuProps) {
               <Link
                 to="/contact"
                 onClick={onClose}
-                className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primary/80 transition-colors group"
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primary hover:bg-primary/5 transition-all group px-3 py-2 rounded-md -mx-3"
               >
                 Get Technical Help
                 <ChevronRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
@@ -118,7 +118,7 @@ export function MegaMenu({ item, onClose }: MegaMenuProps) {
                 <Link
                   to="/products"
                   onClick={onClose}
-                  className="inline-flex items-center gap-1 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors group"
+                  className="inline-flex items-center gap-1 text-xs font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-all group px-3 py-1.5 rounded-md -mx-3"
                 >
                   Browse All Products
                   <ChevronRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
