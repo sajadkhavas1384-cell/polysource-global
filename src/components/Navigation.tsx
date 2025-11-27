@@ -23,7 +23,7 @@ export function Navigation() {
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Desktop: Two-layer header */}
         <div className="hidden lg:block">
           {/* Top layer: Brand + Trust signals */}
@@ -58,7 +58,6 @@ export function Navigation() {
               {/* Polymer Products with Mega Menu */}
               {polymerProductsItem && (
                 <div
-                  className="relative"
                   onMouseEnter={() => setMegaMenuOpen('polymer-products')}
                   onMouseLeave={() => setMegaMenuOpen(null)}
                 >
@@ -68,10 +67,16 @@ export function Navigation() {
                   >
                     {polymerProductsItem.label.en}
                   </Link>
-
-                  {megaMenuOpen === 'polymer-products' && (
-                    <MegaMenu item={polymerProductsItem} onClose={() => setMegaMenuOpen(null)} />
-                  )}
+                </div>
+              )}
+              
+              {/* MegaMenu positioned relative to entire nav container */}
+              {megaMenuOpen === 'polymer-products' && polymerProductsItem && (
+                <div
+                  onMouseEnter={() => setMegaMenuOpen('polymer-products')}
+                  onMouseLeave={() => setMegaMenuOpen(null)}
+                >
+                  <MegaMenu item={polymerProductsItem} onClose={() => setMegaMenuOpen(null)} />
                 </div>
               )}
 

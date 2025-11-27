@@ -34,7 +34,7 @@ export function DesktopDropdown({ item, isOpen, onOpenChange }: DesktopDropdownP
       </button>
 
       {isOpen && (
-        <div className="absolute top-full left-0 mt-1 min-w-[240px] bg-background/98 backdrop-blur-sm border border-border shadow-xl rounded-lg z-50 py-2">
+        <div className="absolute top-full left-0 mt-1 min-w-[240px] bg-background border border-border shadow-xl rounded-lg z-[60] py-2">
           {item.children.map((child) => (
             <Link
               key={child.id}

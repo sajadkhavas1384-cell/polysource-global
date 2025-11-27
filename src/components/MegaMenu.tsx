@@ -13,9 +13,9 @@ export function MegaMenu({ item, onClose }: MegaMenuProps) {
   }
 
   return (
-    <div className="absolute top-full left-0 w-full bg-background border-t border-border shadow-2xl z-[100]">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <div className="grid grid-cols-5 gap-6">
+    <div className="hidden lg:block absolute left-0 right-0 top-full bg-background border-t border-border shadow-2xl z-[100]">
+      <div className="py-10 px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-5 gap-6 max-w-[1400px] mx-auto">
           {/* Product Family Columns (4 columns) */}
           {item.children.map((group) => (
             <div key={group.id} className="space-y-4">
